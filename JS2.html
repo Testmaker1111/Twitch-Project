@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<!-- parallel  -->
+<body>
+    <div id = "user" class = "common">
+        Users:
+        <ul class = "common box">
+            <li id = "john"> John </li>
+            <li id = "Peter"> Peters</li>
+        </ul>
+    </div>
+
+
+    <h2>this is a box</h2>
+    <div>id = "box"</div>
+
+    <h2> Capturing vs. Buddling</h2>
+    <div id = "grandparent">
+        <div id = "parent">
+            <div id = "child"></div>
+        </div>
+    </div>
+</body>
+<script>
+    //window.test, window.sayHi
+    var test = 12;
+    function sayhi() {
+        console.log("say hellow");
+    }
+    const test2 = 25;
+    let test3 = 30;
+    //finding elements
+    const oUser = document.getElementById("user");  //oUser -- Object user
+    const oCommon = document.getElementsByClassName("common");  //oCommon -- Object
+    const oList = document.getElementsByTagName("li");
+    const boxCommon = document.getElementsByClassName("common box")[0];   //boxCommon
+    const peter = boxCommon.getElementsByTagName("li")[1];      //Object peter
+    const oCommon2 = document.querySelectorAll(".common"); //oCommon2, static
+
+    //creating elements
+    const xiaohong = document.createElement("li");
+    xiaohong.innerText = "Xiao Hong";
+    //boxCommon.append(xiaohong);
+    //boxCommon.prepend(xiaohong);
+    //peter.after(newLi);
+    peter.before(xiaohong);
+
+    const xiaozhang = document.createElement("li");
+    xiaozhang.innerHTML = "<b><i>Xiao Zhang</i></b>";
+    xiaohong.after(xiaozhang);
+
+    //updating attributes
+    xiaozhang.className = "Xiaozhang class2 class3"
+    xiaozhang.classList.add("class4");
+    xiaozhang.classList.remove("class2");
+    xiaozhang.style.color = "red";
+</script>
+</html>
+

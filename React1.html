@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        console.log("Hello REACT 1 - es6");
+
+        let example;        //declaration
+        example = 1;        //assignment
+
+        let example2 = 1;   //declaration and assignment
+        //scoping types: block scope {}, function scope, global scope
+        //var: function scope, global scope
+        //let, const: block scope (including function scope)
+        {
+            const xConst = 1;
+            let xlet = 1;
+            var xVar = 1;
+        }
+        for (let i = 0; i < 1; i++) {
+            const xConstLoop = 1;
+            let xLetLoop = 1;
+            var xVarLoop = 1;
+        }
+
+        function exampleFunction() {
+            const xConstFunction = 1;
+            let xLetFunction = 1;
+            var xVarFunction = 1;
+        }
+
+        //Desctructing
+        const array = [1, true, "charlie"];
+        const[x, y, z, zUndefined] = array;
+        const array0 = array[0];
+        const array1 = array[1];
+        const array2 = array[2];
+        // const [x, y] = array;   //still works; design algorithm
+
+        const name = "Wen Jie";
+        const object = {
+            name: "Xiao Ye",
+            age: 18,
+            secret: "do not answer",
+        };
+
+        const { name: myNickName, age, secret } = object;
+
+        //JS - pass by value (primitive type) - number, string, boolean, null, undefined
+        //JS - pass by value - reference (array, function, object)
+
+        const object2 = object;
+        object2.name = "Xiao Ye 2";
+
+        const sayMyName = ({ name, age}, partner = "Xiao Lei") => {
+            console.log("hi", name, age);
+            console.log("partner", partner);
+        };
+
+        sayMyName(object, "Lei Tong Zhi");  //default value
+
+        //Rest Operator
+        function fn(first, secon = "100", ...args) {
+            console.log("first", first);
+            console.log("args: ", args);    //args
+        }
+
+        fn(0);
+        fn(0, 1, 2, 3, 4);
+        // fn(0, null, 2, 3, 4);
+        // fn(0, undefined, 2, 3, 4)
+        fn(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+
+        //Spread Operator
+        const arr1 = [1, 2, 3];
+        const arr2 = [4, 5, 6];
+        const arr3 = [... arr1, ... arr2];
+        console.log("arr3: ", arr3);
+
+        const object3 = {
+            ...object,
+            age: 20,
+        };
+        console.log("object3: ", object3);
+
+        const times2 = (x) => x * 2;    //arrow function: implicit return, one line
+        const times2_2 = (x) => {       //normal function
+            return x * 2;
+        };
+        console.log("times2: ", times2(2));
+        console.log("times2: ", times2_2(2));
+
+        const arr4 = [1, 2, 3, 4, 5];
+        const arr5 = arr4.map((x) => x * 3);    //the usage
+        console.log("arr5: ", arr5);
+
+        //Caes1: function context
+        //inside a function, the value of "this" depends on how the function is called
+        // obj1.function();
+        // window.function();
+
+        //Case2: arrow function
+        //"this" is set to what it was when the function was created
+        () => {
+            console.log(this);
+        };
+
+        //Case3: class - similar to java
+        //"this" is bound to the new object being constructed
+
+        function fn() {
+            console.log("fn1 this", this);      //depneds on who called the function
+            //inner function
+            const run = () => {                 //based on where the arrow function is declared
+                console.log("run this", this);
+            };
+            run();
+        };
+
+        let item1 = {
+            a: 1,
+            myFunction: fn,
+        };
+
+        let item2 = {
+            a: 2,
+            myFunction: fn,
+        };
+
+        item1.myFunction();
+        item2.myFunction();
+
+
+        function fn2() {
+            console.log("fn2 this ", this);
+            //inner function
+            //window.run()
+            function run() {                //window invokes/called the function
+                console.log("run this, ", this);
+            }
+            run();
+        };
+
+        let item3 = {
+            a: 1,
+            myFunction: fn2,
+        };
+
+        let item4 = {
+            a: 2,
+            myFunction: fn2,
+        };
+
+        item3.myFunction();
+        item4.myFunction();
+
+        class Person {
+            constructor(name, age = 18) {
+                this.name = name;
+                this.age = age;
+            }
+
+            methodA() {
+                console.log("name", this.name);
+            }
+
+            methodB() {
+                console.log("age", this.age);
+            }
+        }
+
+        const Jeff = new Person("Jeff", 23);
+        Jeff.methodA();
+        Jeff.methodB();
+
+        class Student extends Person {
+            constructor(name, age, school) {
+                super(name, age);
+                this.school = school;
+            }
+            
+            methodC() {
+                console.log("school", this.school);
+            }
+        }
+
+        const David = new Student ("David", 22, "Pitt");
+        David.methodA();
+        David.methodB();
+        David.methodC();
+
+
+        //template string
+        // + : string concatenation
+        const universityDiploma 
+        = "Congratulations, you have graduated from " + " " + xiaozhang.school;
+
+        // template string - backtick ` `
+        const universityDiploma2 = `Congratulations, you have graduated from ${xiaozhang.school}`;
+
+        console.log("unniversityDiploma", universityDiploma);
+        console.log("universityDiploma2", universityDiploma2);
+
+    </script>
+</body>
+</html>

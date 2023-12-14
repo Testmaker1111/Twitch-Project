@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- xx.xx.xx
+    major.minor.patch
+    16.13.01
+    16^ -->
+    <script src="https://unpkg.com/react@^16/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@16.13.0/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.26.0/babel.js"></script>
+</head>
+<body>
+    <div id = "root"></div>
+    <script type = "text/babel">
+        const elem1 = document.createElement("h1");   //browser DOM
+        elem1.innerHTML = 'Hello World';
+        document.getElementById("root").append(elem1);
+
+        const ele2 = React.createElement("h1", null, "Hello World 2"); //Virtual DOM
+        ReactDOM.render(ele2, document.getElementById("root"));
+
+        //JSX
+        const ele3 = <h1>Hello World 3</h1>;
+        ReactDOM.render(ele3, document.getElementById("root"));
+
+        //Two ways to define React components
+        //function components; first letter must be Uppercase
+        function Hello(props) {
+            console.log("props: ", prosp);
+            return (
+                <h1>
+                    Hello World {2 * 2}, my name is {props.name}{" "}
+                </h1>
+            );
+        }
+
+        //class component
+        class Hello2 extends React.Component {
+            constructor(props) {
+                super(props);
+                console.log("prop Hello2: ", props);
+            }
+
+            render() {
+                return <h1> Hello World, my age is {this.props.age} </h1>;
+            }
+        }
+
+        ReactDOM.render(
+            [<Hello name="XiaoZhang" />, <Hello2 age='40' />],
+            document.getElementById("root")
+        );
+
+    </script>
+</body>
+</html>
